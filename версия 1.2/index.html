@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="true">
+    <title>Отель "Сибирь"</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        
+        /* Стили для мобильного меню */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo h1 {
+            margin: 0;
+            padding: 15px 0;
+            color: #333;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f8f8;
+        }
+        
+        nav ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        nav ul li a:hover {
+            background-color: #eee;
+        }
+        
+        /* Кнопка меню для мобильных */
+        .menu-toggle {
+            display: block;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* Скрываем меню по умолчанию на мобильных */
+        nav {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        /* Показываем меню при активном состоянии */
+        nav.active {
+            max-height: 500px;
+        }
+        
+        /* Секции */
+        section {
+            padding: 80px 0;
+        }
+        
+        #hero {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 150px 0 100px;
+            margin-top: 60px;
+        }
+        
+        /* Адаптивные сетки */
+        .room-grid, .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        .room img, .gallery-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        /* Формы */
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        /* Кнопка контактов */
+        .contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        /* Медиа-запросы для планшетов и десктопов */
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+            
+            nav {
+                max-height: none;
+                overflow: visible;
+            }
+            
+            nav ul {
+                flex-direction: row;
+                justify-content: flex-end;
+                background-color: transparent;
+            }
+            
+            nav ul li a {
+                border-bottom: none;
+                padding: 15px 20px;
+            }
+            
+            .room-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* iOS специфичные стили */
+        @supports (-webkit-touch-callout: none) {
+            input, textarea, button {
+                font-size: 16px; /* Убирает увеличение на iOS */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Сибирь</h1>
+            </div>
+            <div class="menu-toggle">☰</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#rooms">Номера</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Добро пожаловать в отель "Сибирь"</h2>
+            <p>Ваш идеальный отдых!</p>
+            <a href="#rooms" class="button">Посмотреть номера</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h3>О нас</h3>
+            <p>Отель "Сибирь" – это уютное место. Мы предлагаем комфортабельные номера с видом на горы, отличный сервис и незабываемый отдых.</p>
+        </div>
+    </section>
+
+    <section id="rooms">
+        <div class="container">
+            <h3>Номера</h3>
+            <div class="room-grid">
+                <div class="room">
+                    <img src="images/стандарт.webp" alt="Стандартный номер">
+                    <h4>Стандартный номер</h4>
+                    <p>Уютный номер с двуспальной кроватью и всеми удобствами.</p>
+                </div>
+                <div class="room">
+                    <img src="images/люкс.webp" alt="Номер люкс">
+                    <h4>Номер люкс</h4>
+                    <p>Просторный номер с панорамным видом на горы.</p>
+                </div>
+                <div class="room">
+                    <img src="images/комфорт.webp" alt="Комфорт номер">
+                    <h4>Номер комфорт</h4>
+                    <p>Идеальный выбор для семей с детьми. Две комнаты и все необходимое для комфортного проживания.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h3>Услуги</h3>
+            <ul>
+                <li>Ресторан</li>
+                <li>Летние активности</li>
+                <li>Зимние активности</li>
+                <li>Трансфер</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h3>Галерея</h3>
+            <div class="gallery-grid">
+                <img src="images/XXXL (3).webp" alt="Фото 1">
+                <img src="images/XXXL2.webp" alt="Фото 2">
+                <img src="images/XXXL33.webp" alt="Фото 3">
+                <img src="images/XXXL777.webp" alt="Фото 4">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h3>Контакты</h3>
+            <p>Адрес: село Эсто-Садок, наб. Лаванда, 9, корп. 8</p>
+            <p>Телефон: <a href="tel:+79384456550">+7 (938) 445-65-50</a></p>
+            <p>Email: <a href="mailto:siberiamyrussia@gmail.com">siberiamyrussia@gmail.com</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy;2025 Отель "Сибирь"</p>
+        </div>
+    </footer>
+
+    <!-- Кнопка для вызова формы -->
+    <button class="contact-btn">КОНТАКТЫ</button>
+
+    <!-- Модальное окно -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Обратная связь</h3>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш email" required>
+                <input type="tel" name="phone" placeholder="Ваш телефон" inputmode="tel">
+                <textarea name="message" placeholder="Ваше сообщение" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Получаем элементы DOM
+        const modal = document.getElementById("contactModal");
+        const btn = document.querySelector(".contact-btn");
+        const span = document.getElementsByClassName("close")[0];
+        const contactForm = document.getElementById("contactForm");
+        const menuToggle = document.querySelector(".menu-toggle");
+        const nav = document.querySelector("nav");
+
+        // Мобильное меню
+        menuToggle.addEventListener("click", function() {
+            nav.classList.toggle("active");
+        });
+
+        // Закрываем меню при клике на ссылку
+        document.querySelectorAll("nav a").forEach(link => {
+            link.addEventListener("click", function() {
+                nav.classList.remove("active");
+            });
+        });
+
+        // Открываем модальное окно при клике на кнопку
+        btn.onclick = function() {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Блокируем прокрутку фона
+        }
+
+        // Закрываем модальное окно при клике на крестик
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Восстанавливаем прокрутку
+        }
+
+        // Закрываем модальное окно при клике вне его области
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+
+        // Обработка отправки формы
+        contactForm.onsubmit = function(e) {
+            e.preventDefault();
+            
+            // Здесь можно добавить код для отправки данных формы
+            // Например, с помощью fetch или XMLHttpRequest
+            
+            alert("Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.");
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+            contactForm.reset();
+        }
+
+        // Оптимизация для iOS - предотвращение масштабирования при фокусе
+        document.addEventListener("touchstart", function() {}, {passive: true});
+    </script>
+</body>
+</html>

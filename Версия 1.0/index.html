@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Отель Сибирь - Роза Хутор</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+  }
+  header {
+    background-color: #006699;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 2em;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    background-color: #004d66;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+  }
+  nav a:hover {
+    background-color: #0077aa;
+  }
+  section {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  .intro {
+    background-color: #e0f7fa;
+    border-radius: 10px;
+    padding: 30px;
+  }
+  h2 {
+    color: #006699;
+  }
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .gallery img {
+    width: calc(33% - 10px);
+    border-radius: 8px;
+  }
+  .activities {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer {
+    background-color: #006699;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+  }
+  /* Responsive styles */
+  @media(max-width: 768px){
+    .gallery img {
+      width: calc(50% - 10px);
+    }
+  }
+  @media(max-width: 480px){
+    .gallery img {
+      width: 100%;
+    }
+    nav {
+      flex-direction: column;
+    }
+  }
+  /* Button styles */
+  .btn {
+    background-color: #004d66;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 20px;
+  }
+
+  .btn:hover {
+    background-color: #0077aa;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Отель "Сибирь" на курорте Роза Хутор</h1>
+  <p>Гостиница с богатой историей и современными возможностями</p>
+</header>
+
+<nav>
+  <a href="#about">О нас</a>
+  <a href="#rooms">Номера</a>
+  <a href="#activities">Активности</a>
+  <a href="#gallery">Галерея</a>
+  <a href="#contact">Контакты</a>
+</nav>
+
+<section id="about" class="intro">
+  <h2>О гостинице</h2>
+  <p>Гостиница "Сибирь" впервые открыта в 2014 году для участников зимней Олимпиады в Сочи и сертифицирована как четырехзвездочная. Ранее принадлежала Ассоциации зимних олимпийских видов спорта России. Здесь проживали многие звезды олимпийского движения. После Олимпиады двери открыты для всех желающих. Расположена в удобной части курорта Роза Хутор, рядом с инфраструктурой, подъемниками и транспортной развязкой.</p>
+  <p>Летом гости могут наслаждаться вело- и пешими маршрутами, отдыхом на берегу моря, туда регулярно осуществляется трансфер на комфортабельных автомобилях.</p>
+  <p>Зимой гости могут покорять горнолыжные склоны, арендуя всё необходимое в нашем пункте проката, а также посещать Этнографический комплекс "Моя Россия" – 11 тематических павильонов, вход бесплатен для постояльцев.</p>
+</section>
+
+<section id="rooms">
+  <h2>Наши номера</h2>
+  <p>Современные комфортные номера с уютной атмосферой, рассчитанные на разное количество гостей. Все номера оборудованы современными удобствами и оформлены с учетом стиля сибирской природы.</p>
+</section>
+
+<section id="activities" class="activities">
+  <h2>Активный отдых</h2>
+  <div>
+    <h3>Летний сезон</h3>
+    <ul>
+      <li>Велопоездки и пешие маршруты</li>
+      <li>Отдых на море</li>
+      <li>Трансферы на пляж</li>
+    </ul>
+  </div>
+  <div>
+    <h3>Зимний сезон</h3>
+    <ul>
+      <li>Горнолыжные склоны</li>
+      <li>Аренда оборудования</li>
+      <li>Экскурсии и прогулки</li>
+    </ul>
+  </div>
+  <button class="btn" onclick="bookNow()">Забронировать номер</button>
+</section>
+
+<section id="gallery">
+  <h2>Галерея</h2>
+  <div class="gallery">
+    <img src="https:C:\Users\MSI\Desktop\Сайт\images" alt="Гостиница Роза Хутор 1" />
+    <img src="https://images.unsplash.com/photo-1576851555882-76f516bde0a0" alt="Горнолыжный склон" />
+    <img src="https://images.unsplash.com/photo-1614465217734-87248689f39b" alt="Велосипедные маршруты" />
+    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Морской берег" />
+    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442" alt="Этнографический комплекс" />
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Горнолыжное обучение" />
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Контакты</h2>
+  <p>Адрес: Курорт Роза Хутор, Россия</p>
+  <p>Телефон: +7 123 456 78 90</p>
+  <p>Email: info@sibir-hotel.ru</p>
+  <button class="btn" onclick="showReservation()">Забронировать номер</button>
+</section>
+
+<div class="footer">
+  <p>&copy; 2024 Гостиница "Сибирь". Все права защищены.</p>
+</div>
+
+<script>
+  function bookNow() {
+    alert("Форма бронирования временно недоступна. Свяжитесь с нами по телефону или email.");
+  }
+  
+  function showReservation() {
+    alert("Для оформления брони свяжитесь, пожалуйста, с нашим менеджером по телефону или оставьте заявку на сайте.");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гостиница "Сибирь" - 4-звездочный отель на Роза Хутор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3A5F0B;
+            --secondary: #8B4513;
+            --accent: #D4A76A;
+            --light: #F5F5F0;
+            --dark: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .header-contacts {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .phone {
+            font-weight: 600;
+            color: var(--dark);
+            text-decoration: none;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #2c4a08;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/img001.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        /* About */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Features */
+        .features {
+            background-color: var(--light);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        /* Rooms */
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .room-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .room-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .room-card:hover .room-image img {
+            transform: scale(1.05);
+        }
+        
+        .room-info {
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .room-title {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .room-price {
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 15px 0;
+        }
+        
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .amenity {
+            background-color: var(--light);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        /* Gallery */
+        .gallery {
+            background-color: var(--light);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Contact */
+        .contact-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-map {
+            flex: 1;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Floating button */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .floating-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-map {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Сибирь<span>Отель</span></a>
+            <div class="header-contacts">
+                <a href="tel:+78001234567" class="phone">+7 (800) 123-45-67</a>
+                <a href="https://rosakhutor.ru" class="btn">Забронировать</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Гостиница "Сибирь" на Роза Хутор</h1>
+            <p>4-звёздочный отель с историей Олимпиады-2014. Комфорт, уют и незабываемые впечатления от отдыха в горах Сочи!</p>
+            <div class="hero-btns">
+                <a href="https://rosakhutor.ru" class="btn">Забронировать номер</a>
+                <a href="#about" class="btn btn-secondary">Подробнее</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">О нашей гостинице</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Гостиница "Сибирь" была открыта в 2014 году для участников зимней Олимпиады в Сочи и сертифицирована как четырёхзвёздочная. Ранее отель принадлежал Ассоциации зимних олимпийских видов спорта России, и в наших стенах проживало немало звёзд олимпийского движения.</p>
+                    <p>После завершения Олимпиады двери гостиницы открыты для всех желающих. Мы выбрали это расположение из-за близости к инфраструктуре курорта, подъёмникам и удобной транспортной развязке.</p>
+                    <p>Наш отель — это не просто место для ночлега, это история комфорта и уюта с просторными номерами, уникальным дизайном, мебелью из массива ценных пород дерева и светильниками с текстильными абажурами ручной работы.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/imgloby.webp" alt="Лобби гостиницы Сибирь">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section features">
+        <div class="container">
+            <h2 class="section-title">Наши преимущества</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏔️</div>
+                    <h3>Идеальное расположение</h3>
+                    <p>Рядом с подъёмником "Олимпия", тихо, но в центре событий. Удобная транспортная развязка.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🍽️</div>
+                    <h3>Кафе "Сибирь"</h3>
+                    <p>Завтраки и обеды с сибирской кухней: пельмени с олениной, строганина, муксун и другие деликатесы.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚌</div>
+                    <h3>Бесплатный трансфер</h3>
+                    <p>Летом — до 20 автобусов в день на пляж в Имеретинку. Зимой — удобный доступ к склонам.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏂</div>
+                    <h3>Прокат снаряжения</h3>
+                    <p>Зимой — лыжи и сноуборды. Летом — велосипеды для прогулок по живописным маршрутам.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎫</div>
+                    <h3>Этнопарк "Моя Россия"</h3>
+                    <p>Бесплатный вход для постояльцев. 11 павильонов с культурой разных регионов страны.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🅿️</div>
+                    <h3>Бесплатная парковка</h3>
+                    <p>Для гостей на личном транспорте — удобная охраняемая парковка напротив отеля.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Наши номера</h2>
+            <div class="rooms-grid">
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="images/стандарт.webp" alt="Номер Стандарт">
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">Стандарт</h3>
+                        <p>Уютный номер с большой двуспальной кроватью, оборудованный всем необходимым для комфортного проживания.</p>
+                        <div class="amenities">
+                            <span class="amenity">Wi-Fi</span>
+                            <span class="amenity">Кондиционер</span>
+                            <span class="amenity">Телевизор</span>
+                            <span class="amenity">Сейф</span>
+                        </div>
+                        <p class="room-price">от 5 000 руб./ночь</p>
+                        <a href="https://rosakhutor.ru" class="btn">Забронировать</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="images/комфорт.webp" alt="Семейный номер">
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">Семейный</h3>
+                        <p>Просторный номер для отдыха с семьёй или большой компанией. Удобство для всех гостей.</p>
+                        <div class="amenities">
+                            <span class="amenity">Wi-Fi</span>
+                            <span class="amenity">Кондиционер</span>
+                            <span class="amenity">Холодильник</span>
+                            <span class="amenity">Чайник</span>
+                        </div>
+                        <p class="room-price">от 7 500 руб./ночь</p>
+                        <a href="https://rosakhutor.ru" class="btn">Забронировать</a>
+                    </div>
+                </div>
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="images/люкс.webp" alt="Номер Люкс">
+                    </div>
+                    <div class="room-info">
+                        <h3 class="room-title">Люкс</h3>
+                        <p>Двухкомнатное пространство с захватывающим видом на горную реку. Каждый момент станет незабываемым.</p>
+                        <div class="amenities">
+                            <span class="amenity">Wi-Fi</span>
+                            <span class="amenity">Кондиционер</span>
+                            <span class="amenity">Мини-бар</span>
+                            <span class="amenity">Халаты</span>
+                        </div>
+                        <p class="room-price">от 12 000 руб./ночь</p>
+                        <a href="https://rosakhutor.ru" class="btn">Забронировать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section features">
+        <div class="container">
+            <h2 class="section-title">Услуги и развлечения</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">❄️</div>
+                    <h3>Зимний отдых</h3>
+                    <p>Горные лыжи и сноуборд на склонах Роза Хутор. Прокат снаряжения прямо в отеле. Льготные билеты на подъёмник.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☀️</div>
+                    <h3>Летний отдых</h3>
+                    <p>Велосипедные и пешие маршруты. Трансфер на пляж в Имеретинку. Прогулки по Кавказскому заповеднику.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Этнопарк "Моя Россия"</h3>
+                    <p>11 тематических павильонов: Кавказ, Суздаль, Москва, Казань, Сибирь и другие. Бесплатный вход для гостей отеля.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery">
+        <div class="container">
+            <h2 class="section-title">Фотогалерея</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/территор.jpg" alt="Территория отеля">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/кафе.webp" alt="Кафе Сибирь">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/изокна.webp" alt="Вид из номера">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/мояроссия.jpg" alt="Этнопарк">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/склоны.jpg" alt="Горные склоны">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/пляж.jpg" alt="Пляж Имеретинки">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h3>Адрес</h3>
+                            <p>Краснодарский край, Сочи, Эстосадок, Роза Хутор</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h3>Телефон</h3>
+                            <p><a href="tel:+78001234567">+7 (800) 123-45-67</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:info@sibir-hotel.ru">info@sibir-hotel.ru</a></p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="https://wa.me/+79384456550">Whatsupp</a>
+                        <a href="#" class="https://vk.com/siberia_hotel">VK</a>
+                        <a href="#" class="https://t.me/rosakhutoralerts?roistat_visit=12594889">Telegram</a>
+                    </div>
+                    <button id="openModal" class="btn" style="margin-top: 30px;">Написать нам</button>
+                </div>
+                <div class="contact-map">
+                    <!-- Здесь будет карта -->
+                    <img src="images/карта.jpg" alt="Карта расположения отеля" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="#" class="footer-logo">Сибирь<span>Отель</span></a>
+            <p>4-звёздочный отель на Роза Хутор с 2014 года</p>
+            <p class="copyright">© Гостиница "Сибирь", 2024. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <a href="https://rosakhutor.ru" class="floating-btn">🏨</a>
+
+    <!-- Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Обратная связь</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('contactModal');
+        const openModalBtn = document.getElementById('openModal');
+        const closeModalBtn = document.querySelector('.close-modal');
+        
+        openModalBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+        
+        closeModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+            modal.style.display = 'none';
+            e.target.reset();
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

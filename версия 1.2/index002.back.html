@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отель "Сибирь"</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+        
+        /* Стили для кнопки вызова формы */
+        .contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 999;
+        }
+        
+        .contact-btn:hover {
+            background-color: #45a049;
+        }
+        
+        /* Стили формы */
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Остальная часть вашего HTML остается без изменений -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Сибирь</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#rooms">Номера</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#gallery">Галерея</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Добро пожаловать в отель "Сибирь"</h2>
+            <p>Ваш идеальный отдых!</p>
+            <a href="#rooms" class="button">Посмотреть номера</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h3>О нас</h3>
+            <p>Отель "Сибирь" – это уютное место. Мы предлагаем комфортабельные номера с видом на горы, отличный сервис и незабываемый отдых.</p>
+        </div>
+    </section>
+
+    <section id="rooms">
+        <div class="container">
+            <h3>Номера</h3>
+            <div class="room-grid">
+                <div class="room">
+                    <img src="images/стандарт.webp" alt="Стандартный номер">
+                    <h4>Стандартный номер</h4>
+                    <p>Уютный номер с двуспальной кроватью и всеми удобствами.</p>
+                </div>
+                <div class="room">
+                    <img src="images/люкс.webp" alt="Номер люкс">
+                    <h4>Номер люкс</h4>
+                    <p>Просторный номер с панорамным видом на горы.</p>
+                </div>
+                <div class="room">
+                    <img src="images/комфорт.webp" alt="Комфорт номер">
+                    <h4>Номер комфорт</h4>
+                    <p>Идеальный выбор для семей с детьми. Две комнаты и все необходимое для комфортного проживания.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h3>Услуги</h3>
+            <ul>
+                <li>Ресторан</li>
+                <li>Летние активности</li>
+                <li>Зимние активности</li>
+                <li>Трансфер</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h3>Галерея</h3>
+            <div class="gallery-grid">
+                <img src="images/XXXL (3).webp" alt="Фото 1">
+                <img src="images/XXXL2.webp" alt="Фото 2">
+                <img src="images/XXXL33.webp" alt="Фото 3">
+                <img src="images/XXXL777.webp" alt="Фото 4">
+            </div>
+        </div>
+    </section>
+
+ <!--   <section id="contact">
+        <div class="container">
+            <h3>Контакты</h3>
+            <p>Адрес: село Эсто-Садок, наб. Лаванда, 9, корп. 8</p>
+            <p>Телефон: +7 (938) 445-65-50</p>
+            <p>Email: siberiamyrussia@gmail.com </p>
+            <form action="#" method="post">
+                <input type="text" name="name" placeholder="Ваше имя">
+                <input type="email" name="email" placeholder="Ваш email">
+                <textarea name="message" placeholder="Ваше сообщение"></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </section>-->
+
+    <footer>
+        <div class="container">
+            <p>&copy;2025 Отель "Сибирь"</p>
+        </div>
+    </footer>
+
+    <!-- Кнопка для вызова формы -->
+    <button class="contact-btn">КОНТАКТЫ</button>
+
+    <!-- Модальное окно -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Обратная связь</h3>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="Ваше имя" required>
+                <input type="email" name="email" placeholder="Ваш email" required>
+                <input type="tel" name="phone" placeholder="Ваш телефон">
+                <textarea name="message" placeholder="Ваше сообщение" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Получаем элементы DOM
+        const modal = document.getElementById("contactModal");
+        const btn = document.querySelector(".contact-btn");
+        const span = document.getElementsByClassName("close")[0];
+        const contactForm = document.getElementById("contactForm");
+
+        // Открываем модальное окно при клике на кнопку
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // Закрываем модальное окно при клике на крестик
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Закрываем модальное окно при клике вне его области
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Обработка отправки формы
+        contactForm.onsubmit = function(e) {
+            e.preventDefault();
+            
+            // Здесь можно добавить код для отправки данных формы
+            // Например, с помощью fetch или XMLHttpRequest
+            
+            alert("Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.");
+            modal.style.display = "none";
+            contactForm.reset();
+        }
+    </script>
+</body>
+</html>
